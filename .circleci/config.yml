@@ -1,0 +1,21 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: buildpack-deps:scm
+    branches:
+      only:
+        - master
+    steps:
+      - checkout
+      - run:
+          name: Upload server
+          command: |
+            echo $(ls -al)
+            apt-get update
+            apt-get -qq install git-ftp
+            git config git-ftp.url $URL
+            git config git-ftp.user $USER_NAME
+            git config git-ftp.password $PASSWORD
+            echo "Deploying project ..."
+            git ftp init
