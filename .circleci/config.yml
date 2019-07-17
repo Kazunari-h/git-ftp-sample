@@ -18,4 +18,5 @@ jobs:
             git config git-ftp.user $USER_NAME
             git config git-ftp.password $PASSWORD
             echo "Deploying project ..."
-            git ftp push
+            # git ftp init # 初回
+            git ftp push # すでに git ftp initして、.git-ftp.logがある状態
